@@ -74,7 +74,9 @@ while True:
     
     for i in enemies:
         if ball.colliderect(i):
-            print("die!")
+            # print("die!")
+            ballVelY *= -1
+            enemies.remove(i)
 
     # ball movement
     ballX += ballVelX
