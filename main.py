@@ -67,10 +67,16 @@ while True:
     if ballY <= 10:
         ballVelY *= -1
     
+    #collitions
     if ball.colliderect(rectangle):
         # ballVelX *= -1
         ballVelY *= -1
     
+    for i in enemies:
+        if ball.colliderect(i):
+            print("die!")
+
+    # ball movement
     ballX += ballVelX
     ballY += ballVelY
         
