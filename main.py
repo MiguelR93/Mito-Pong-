@@ -30,7 +30,6 @@ eneY = list(range(10, 300, 30))
 enemy = []
 for i in eneX:
     for e in eneY:
-        # print(i, e)
         enemy.append((i, e, 100, 10))
 
 while True:
@@ -65,9 +64,15 @@ while True:
     
     if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_LEFT:
-            rectangleX -= velX
+            if rectangleX <= 0:
+                rectangleX += 0
+            else:    
+                rectangleX -= velX
         elif event.key == pygame.K_RIGHT:
-            rectangleX += velX
+            if rectangleX >500:
+                rectangleX += 0
+            else: 
+                rectangleX += velX
 
     if ballY >= 810:
         ballVelX *= -1
