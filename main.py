@@ -14,7 +14,7 @@ clock = pygame.time.Clock()
 # rectX, rectY = 250, 745
 # rectangle = pygame.Rect(250, 745, 100, 10)
 rectangleX, rectangleY = 250, 745
-ballX, ballY = 300,300
+ballX, ballY = 300,450
 
 velX = 5
 ballVelX, ballVelY = 5, 5
@@ -24,6 +24,14 @@ ballVelX, ballVelY = 5, 5
 # for i in range(10, 600, 110):
 #     eneX.append(i)
 #     eneY.append(i)
+eneX = list(range(10, 500, 110))
+eneY = list(range(10, 300, 30))
+
+enemy = []
+for i in eneX:
+    for e in eneY:
+        # print(i, e)
+        enemy.append((i, e, 100, 10))
 
 while True:
     DISPLAYSURF.fill(WHITE)
@@ -36,11 +44,13 @@ while True:
     # for i in eneX:
     #     for i in eneY:
     #         pygame.draw.rect(DISPLAYSURF, (180, 70, 70), (eneX[i], eneY[i], 100, 10))
-    enemies = [
-        pygame.draw.rect(DISPLAYSURF, (180, 70, 70), (10, 10, 100, 10)),
-        pygame.draw.rect(DISPLAYSURF, (180, 70, 70), (10, 30, 100, 10))
-    ]
+    # enemies = [
+    #     pygame.draw.rect(DISPLAYSURF, (180, 70, 70), (10, 10, 100, 10)),
+    #     pygame.draw.rect(DISPLAYSURF, (180, 70, 70), (10, 30, 100, 10))
+    # ]
 
+    for i in enemy:
+        pygame.draw.rect(DISPLAYSURF, (180, 70, 70), i)
 
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -60,7 +70,8 @@ while True:
             rectangleX += velX
 
     if ballY >= 810:
-        ballX, ballY = 300,300
+        ballVelX *= -1
+        ballX, ballY = 300,450
     elif ballX >= 590 or ballX <= 10:
         ballVelX *= -1
     
@@ -72,11 +83,11 @@ while True:
         # ballVelX *= -1
         ballVelY *= -1
     
-    for i in enemies:
+    for i in enemy:
         if ball.colliderect(i):
             # print("die!")
             ballVelY *= -1
-            enemies.remove(i)
+            enemy.remove(i)
 
     # ball movement
     ballX += ballVelX
