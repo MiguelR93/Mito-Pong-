@@ -29,6 +29,7 @@ eneY = list(range(50, 300, 30))
 
 enemy = []
 PLAYERPOINTS = 0
+LIFES = 5
 for i in eneX:
     for e in eneY:
         enemy.append((i, e, 100, 10))
@@ -48,7 +49,19 @@ while True:
 
     #mesage
     totalPoints = myFont.render(f"Has hecho: {PLAYERPOINTS}", 0, (0,0,0))
-    DISPLAYSURF.blit(totalPoints, (250, 10))
+    DISPLAYSURF.blit(totalPoints, (10, 10))
+    lifesRemaining = myFont.render(f"Vidas: {LIFES}", 0, (0,0,0))
+    DISPLAYSURF.blit(lifesRemaining, (450, 10))
+
+    if playerStatusWon == True:
+        DISPLAYSURF.fill(WHITE)
+        youWin = myFont.render("Ganaste!", 0, (0,0,0))
+        DISPLAYSURF.blit(youWin, (250, 400))
+    elif playerStatusWon == False:
+        DISPLAYSURF.fill(WHITE)
+        youLose = myFont.render("Perdiste!", 0, (0,0,0))
+        DISPLAYSURF.blit(youLose, (250, 400))
+
 
     # drawing enemies
     # for i in eneX:
@@ -88,6 +101,7 @@ while True:
     if ballY >= 810:
         ballVelX *= -1
         ballX, ballY = 300,350
+        LIFES -= 1
     elif ballX >= 590 or ballX <= 10:
         ballVelX *= -1
     
@@ -108,13 +122,15 @@ while True:
 
     if len(enemy) == 0:
         playerStatusWon = True
+    elif LIFES == 0:
+        playerStatusWon =False
 
     if playerStatusWon == True:
         print("Ganaste!")
-        break
+        # break
     elif playerStatusWon == False:
         print("Perdiste")
-        break
+        # break
 
     # ball movement
     ballX += ballVelX
