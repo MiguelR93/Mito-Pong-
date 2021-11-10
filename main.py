@@ -36,6 +36,9 @@ for i in eneX:
 #Savage Text
 myFont = pygame.font.SysFont("Arial", 30)
 
+# Game status
+playerStatusWon = None
+
 while True:
     DISPLAYSURF.fill(WHITE)
     
@@ -103,6 +106,16 @@ while True:
             enemy.remove(i)
             PLAYERPOINTS += 1
 
+    if len(enemy) == 0:
+        playerStatusWon = True
+
+    if playerStatusWon == True:
+        print("Ganaste!")
+        break
+    elif playerStatusWon == False:
+        print("Perdiste")
+        break
+
     # ball movement
     ballX += ballVelX
     ballY += ballVelY
@@ -110,3 +123,4 @@ while True:
 
     pygame.display.update()
     clock.tick(60)
+
