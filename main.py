@@ -53,14 +53,7 @@ while True:
     lifesRemaining = myFont.render(f"Vidas: {LIFES}", 0, (0,0,0))
     DISPLAYSURF.blit(lifesRemaining, (450, 10))
 
-    if playerStatusWon == True:
-        DISPLAYSURF.fill(WHITE)
-        youWin = myFont.render("Ganaste!", 0, (0,0,0))
-        DISPLAYSURF.blit(youWin, (250, 400))
-    elif playerStatusWon == False:
-        DISPLAYSURF.fill(WHITE)
-        youLose = myFont.render("Perdiste!", 0, (0,0,0))
-        DISPLAYSURF.blit(youLose, (250, 400))
+    
 
 
     # drawing enemies
@@ -86,6 +79,15 @@ while True:
         #     elif event.key == pygame.K_RIGHT:
         #         rectangle.left += velX
     
+    if playerStatusWon == True:
+        DISPLAYSURF.fill(WHITE)
+        youWin = myFont.render("Ganaste!", 0, (0,0,0))
+        DISPLAYSURF.blit(youWin, (250, 400))
+    elif playerStatusWon == False:
+        DISPLAYSURF.fill(WHITE)
+        youLose = myFont.render("Perdiste!", 0, (0,0,0))
+        DISPLAYSURF.blit(youLose, (250, 400))
+
     if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_LEFT:
             if rectangleX <= 0:
