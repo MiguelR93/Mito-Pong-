@@ -25,12 +25,16 @@ ballVelX, ballVelY = 5, 5
 #     eneX.append(i)
 #     eneY.append(i)
 eneX = list(range(10, 500, 110))
-eneY = list(range(10, 300, 30))
+eneY = list(range(50, 300, 30))
 
 enemy = []
+PLAYERPOINTS = 0
 for i in eneX:
     for e in eneY:
         enemy.append((i, e, 100, 10))
+
+#Savage Text
+myFont = pygame.font.SysFont("Arial", 30)
 
 while True:
     DISPLAYSURF.fill(WHITE)
@@ -38,6 +42,10 @@ while True:
     # pygame.draw.rect(DISPLAYSURF,(180,70,70), rectangle)
     rectangle = pygame.draw.rect(DISPLAYSURF, (180, 70, 70), (rectangleX, rectangleY, 100, 10))
     ball = pygame.draw.circle(DISPLAYSURF, (125, 245, 62), (ballX, ballY), 10)
+
+    #mesage
+    totalPoints = myFont.render(f"Has hecho: {PLAYERPOINTS}", 0, (0,0,0))
+    DISPLAYSURF.blit(totalPoints, (250, 10))
 
     # drawing enemies
     # for i in eneX:
@@ -93,6 +101,7 @@ while True:
             # print("die!")
             ballVelY *= -1
             enemy.remove(i)
+            PLAYERPOINTS += 1
 
     # ball movement
     ballX += ballVelX
