@@ -14,7 +14,7 @@ clock = pygame.time.Clock()
 # rectX, rectY = 250, 745
 # rectangle = pygame.Rect(250, 745, 100, 10)
 rectangleX, rectangleY = 250, 745
-ballX, ballY = 300,450
+ballX, ballY = 300,350
 
 velX = 5
 ballVelX, ballVelY = 5, 5
@@ -76,7 +76,7 @@ while True:
 
     if ballY >= 810:
         ballVelX *= -1
-        ballX, ballY = 300,450
+        ballX, ballY = 300,350
     elif ballX >= 590 or ballX <= 10:
         ballVelX *= -1
     
