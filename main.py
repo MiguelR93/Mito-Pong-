@@ -19,12 +19,28 @@ ballX, ballY = 300,300
 velX = 5
 ballVelX, ballVelY = 5, 5
 
+# enemies
+# eneX, eneY = [10, 110, 210], [10, 30, 50]
+# for i in range(10, 600, 110):
+#     eneX.append(i)
+#     eneY.append(i)
+
 while True:
     DISPLAYSURF.fill(WHITE)
     
     # pygame.draw.rect(DISPLAYSURF,(180,70,70), rectangle)
     rectangle = pygame.draw.rect(DISPLAYSURF, (180, 70, 70), (rectangleX, rectangleY, 100, 10))
     ball = pygame.draw.circle(DISPLAYSURF, (125, 245, 62), (ballX, ballY), 10)
+
+    # drawing enemies
+    # for i in eneX:
+    #     for i in eneY:
+    #         pygame.draw.rect(DISPLAYSURF, (180, 70, 70), (eneX[i], eneY[i], 100, 10))
+    enemies = [
+        pygame.draw.rect(DISPLAYSURF, (180, 70, 70), (10, 10, 100, 10)),
+        pygame.draw.rect(DISPLAYSURF, (180, 70, 70), (10, 30, 100, 10))
+    ]
+
 
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -52,12 +68,12 @@ while True:
         ballVelY *= -1
     
     if ball.colliderect(rectangle):
-        ballVelX *= -1
+        # ballVelX *= -1
         ballVelY *= -1
     
     ballX += ballVelX
     ballY += ballVelY
         
 
-    clock.tick(60)
     pygame.display.update()
+    clock.tick(60)
